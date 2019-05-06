@@ -9,19 +9,16 @@ import (
 
 func main() {
 
-	// Get URL from env
-	testUrl := os.Args[1]
+	for _, i := range os.Args[1:] {
 
-	r, err := http.Get(testUrl)
+		fmt.Println(i) // for debugging
 
-	if err != nil {
-		log.Fatal(err)
+		r, err := http.Get(i)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fmt.Println(r.Status)
 	}
-
-	fmt.Println(r.Status)
-
-	if r.StatusCode != http.StatusOK {
-		fmt.Println("URL did not respond OK")
-	}
-
 }
