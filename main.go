@@ -9,9 +9,11 @@ import (
 
 func main() {
 
-	for _, i := range os.Args[1:] {
+	if len(os.Args) == 1 {
+		log.Fatal("No input provided, please provide at least one url to test")
+	}
 
-		fmt.Println(i) // for debugging
+	for _, i := range os.Args[1:] {
 
 		r, err := http.Get(i)
 
@@ -19,6 +21,6 @@ func main() {
 			log.Fatal(err)
 		}
 
-		fmt.Println(r.Status)
+		fmt.Println("url: "+i, "\t"+r.Status)
 	}
 }
